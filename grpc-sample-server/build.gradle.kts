@@ -18,7 +18,7 @@ dependencies {
 tasks.register<JavaExec>("HelloWorldServer") {
     dependsOn("classes")
     classpath = sourceSets["main"].runtimeClasspath
-    mainClass.set("io.grpc.examples.helloworld.HelloWorldServerKt")
+    mainClass.set("com.github.raink1208.grpcsample.serverHelloWorldServerKt")
 }
 
 val helloWorldServerStartScripts = tasks.register<CreateStartScripts>("helloWorldServerStartScripts") {
