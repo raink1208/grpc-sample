@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.6.10"
-    java
+    kotlin("jvm")
+    application
 }
 
 group = "com.github.raink1208"
@@ -11,11 +11,23 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    implementation(project(":common"))
+    runtimeOnly("io.grpc:grpc-netty:${rootProject.ext["grpcVersion"]}")
 }
 
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
+tasks.register<JavaExec>("HelloWorldServer") {
+    dependsOn("classes")
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("io.grpc.examples.helloworld.HelloWorldServerKt")
+}
+
+val helloWorldServerStartScripts = tasks.register<CreateStartScripts>("helloWorldServerStartScripts") {
+    mainClass.set("com.github.raink1208.grpcsample.server.HelloWorldServerKt")
+    applicationName = "hello-world-server"
+    outputDir = tasks.named<CreateStartScripts>("startScripts").get().outputDir
+    classpath = tasks.named<CreateStartScripts>("startScripts").get().classpath
+}
+
+tasks.named("startScripts") {
+    dependsOn(helloWorldServerStartScripts)
 }
