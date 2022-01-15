@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.6.10"
-    java
+    kotlin("jvm")
+    application
 }
 
 group = "com.github.raink1208"
@@ -11,11 +11,14 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    implementation(project(":common"))
+    runtimeOnly("io.grpc:grpc-netty:${rootProject.ext["grpcVersion"]}")
 }
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+}
+
+application {
+    mainClass.set("com.github.raink1208.grpcsample.client.HelloWorldClientKt")
 }
