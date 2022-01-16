@@ -21,7 +21,7 @@ class HelloWorldClient(private val channel: ManagedChannel) : Closeable {
     }
 }
 
-suspend fun main(args: Array<String>) {
+suspend fun main() {
     val port = 50051
 
     val channel = ManagedChannelBuilder.forAddress("localhost", port).usePlaintext().build()
