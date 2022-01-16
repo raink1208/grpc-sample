@@ -41,7 +41,7 @@ class HelloWorldServer(private val port: Int) {
 }
 
 fun main() {
-    val port = System.getenv("PORT")?.toInt() ?: 50051
+    val port = 50051
     val server = HelloWorldServer(port)
     server.start()
     server.blockUntilShutdown()
