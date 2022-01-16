@@ -15,10 +15,6 @@ dependencies {
     runtimeOnly("io.grpc:grpc-netty:${rootProject.ext["grpcVersion"]}")
 }
 
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
-}
-
 application {
     mainClass.set("com.github.raink1208.grpcsample.client.HelloWorldClientKt")
 }
