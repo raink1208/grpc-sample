@@ -18,3 +18,18 @@ dependencies {
 application {
     mainClass.set("com.github.raink1208.grpcsample.client.HelloWorldClientKt")
 }
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes("Main-Class" to "com.github.raink1208.grpcsample.client.HelloWorldClientKt")
+    }
+    from(configurations.runtimeClasspath.get()
+        .filter { !it.name.endsWith("pom") }
+        .onEach { println("add from dependencies:" + it.name) }
+        .map { if (it.isDirectory) it else zipTree(it) }
+    )
+    val sourcesMain = sourceSets.main.get()
+    sourcesMain.allSource.forEach { println("add form sources: "+it.name) }
+    from(sourcesMain.output)
+}
