@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.raink1208.grpcsample.protos";
+option java_outer_classname = "ClacProto";
+
+package protos;
+
+service ClacSample {
+  rpc plus(ClacRequest) returns (ClacResponse) {}
+  rpc minus(ClacRequest) returns (ClacResponse) {}
+  rpc multiply(ClacRequest) returns (ClacResponse) {}
+  rpc divide(ClacRequest) returns (ClacResponse) {}
+}
+
+message ClacRequest {
+  double x = 1;
+  double y = 2;
+}
+
+message ClacResponse {
+  double response = 1;
+}
