@@ -33,23 +33,23 @@ class ClacServer {
     private class ClacServerService: ClacSampleGrpcKt.ClacSampleCoroutineImplBase() {
         override suspend fun plus(request: ClacRequest): ClacResponse {
             println("${request.x} + ${request.y} = ${request.x + request.y}")
-            return clacResponse { response = request.x + request.y }
+            return clacResponse { result = request.x + request.y }
         }
 
         override suspend fun minus(request: ClacRequest): ClacResponse {
             println("${request.x} - ${request.y} = ${request.x - request.y}")
-            return clacResponse { response = request.x - request.y }
+            return clacResponse { result = request.x - request.y }
         }
 
         override suspend fun multiply(request: ClacRequest): ClacResponse {
             println("${request.x} * ${request.y} = ${request.x * request.y}")
-            return clacResponse { response = request.x / request.y }
+            return clacResponse { result = request.x / request.y }
         }
 
         override suspend fun divide(request: ClacRequest): ClacResponse {
-            if (request.y == 0.0) return clacResponse { response = 0.0 } //error
+            if (request.y == 0.0) return clacResponse { result = 0.0 } //error
             println("${request.x} / ${request.y} = ${request.x / request.y}")
-            return clacResponse { response = request.x / request.y }
+            return clacResponse { result = request.x / request.y }
         }
     }
 }

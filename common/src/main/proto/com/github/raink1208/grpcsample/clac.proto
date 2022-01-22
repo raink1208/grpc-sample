@@ -19,5 +19,5 @@ message ClacRequest {
 }
 
 message ClacResponse {
-  double response = 1;
+  double result = 1;
 }
