@@ -10,7 +10,7 @@ import "google/protobuf/empty.proto";
 
 service StackSample {
   rpc Stack(StackData) returns (google.protobuf.Empty);
-  rpc GetAll(google.protobuf.Empty) returns (StackData);
+  rpc GetAll(google.protobuf.Empty) returns (StackedData);
 }
 
 message StackData {
