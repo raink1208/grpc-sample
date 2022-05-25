@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.raink1208.grpcsample.protos";
+option java_outer_classname = "StackProto";
+
+package protos;
+
+import "google/protobuf/empty.proto";
+
+service StackSample {
+  rpc Stack(StackData) returns (google.protobuf.Empty);
+  rpc GetAll(google.protobuf.Empty) returns (StackData);
+}
+
+message StackData {
+  string name = 1;
+  int32 x = 2;
+  int32 y = 3;
+}
+
+message StackedData {
+  repeated StackData data = 1;
+}
