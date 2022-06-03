@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     implementation(project(":common"))
+    implementation("io.netty:netty-all:4.1.77.Final")
     runtimeOnly("io.grpc:grpc-netty:${rootProject.ext["grpcVersion"]}")
 }
 
